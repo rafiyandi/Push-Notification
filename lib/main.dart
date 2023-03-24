@@ -17,6 +17,8 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  // subscribe to topic on each app start-up
+  await FirebaseMessaging.instance.subscribeToTopic('ads');
   await requestPermission();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(const AppWidget());
